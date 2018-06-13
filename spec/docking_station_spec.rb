@@ -1,13 +1,6 @@
 require 'docking_station'
 
 describe DockingStation do
-  describe '#dock' do
-    it 'raises an error when docking station is full' do
-      subject.dock(Bike.new)
-      expect { subject.dock(Bike.new) }.to raise_error 'Docking Station full'
-    end
-  end
-
   describe '#release_bike' do
     it 'shows docked bikes' do
       bike = Bike.new
@@ -20,6 +13,12 @@ describe DockingStation do
     end
   end
 
+  describe '#dock' do
+    it 'raises an error when docking station is full' do
+      20.times { subject.dock(Bike.new) }
+      expect { subject.dock(Bike.new) }.to raise_error 'Docking Station full'
+    end
+  end
 
   it 'releases a working bike' do
     bike = Bike.new
